@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerable Shoe Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Vulnerable Shoe Store</h1>
+        <!-- Search box for reflected XSS demonstration -->
+        <form onsubmit="return false;">
+            <h2>Try the XSS injection here</h2><br>
+            <input type="text" id="searchBar" name="searchBar" placeholder="Type your search here..." onkeypress="if(event.keyCode==13) search();" style="width: 300px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <button onclick=search() style="margin-top: 20px; padding: 10px 20px; border: none; border-radius: 5px; background-color: #007BFF; color: white; cursor: pointer;">Search</button>
+            <br>
+            <h2>Try the SQL injection here</h2>
+            <ul>
+                <li>Running Shoes</li>
+                <li>Hiking Boots</li>
+                <li>Flip Flops</li>
+            </ul>
+            <input type="text" id="searchQuery" name="searchQuery" placeholder="Type your search here..." style="width: 300px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <button onclick="getValue()" type="submit" style="margin-top: 20px; padding: 10px 20px; border: none; border-radius: 5px; background-color: #007BFF; color: white; cursor: pointer;">Search</button>
+            <br>
+        </form>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Feedback form for stored XSS demonstration -->
+        <div>
+            <h2>Feedback</h2>
+            <textarea id="feedbackInput"></textarea>
+            <button onclick="submitFeedback()">Submit Feedback</button>
+            <div id="feedbackDisplay"></div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Vulnerable Shoe Store. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
